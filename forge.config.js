@@ -4,6 +4,7 @@ const { FuseV1Options, FuseVersion } = require('@electron/fuses');
 module.exports = {
   packagerConfig: {
     asar: true,
+    // executableName: "System Monitor"
   },
   rebuildConfig: {},
   makers: [
@@ -17,11 +18,23 @@ module.exports = {
     },
     {
       name: '@electron-forge/maker-deb',
-      config: {},
+      config: {
+        options: {
+          name: "System Monitor",
+          icon: 'images/icon.png', // no file extension required
+          // setupIcon: 'images/icon_1.ico'
+        }
+      },
     },
     {
       name: '@electron-forge/maker-rpm',
-      config: {},
+      config: {
+        options: {
+          name: "System Monitor",
+          icon: 'images/icon.png', // no file extension required
+          // setupIcon: 'images/icon_1.ico'
+        }
+      },
     },
   ],
   plugins: [

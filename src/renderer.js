@@ -9,7 +9,7 @@ import InfoCPU from './components/InfoCPU'
 import InfoMemory from './components/InfoMemory'
 import { border } from '@mui/system';
 
-
+import CpuFrequencyChart from './components/TestComponent';
 
 
 const App = () => {
@@ -29,8 +29,8 @@ const App = () => {
       content: {
             borderRadius: '40px', // Закругленные углы
             boxShadow: '2px 2px 6px 4px rgba(0, 0, 0, 0.1)', // Тень
-            padding: "1% 20%" ,
-            marginTop: "4%",
+            padding: "1% 2%" ,
+            marginTop: "25px",
             // backgroundColor: "blue"
       }
     }
@@ -40,7 +40,7 @@ const App = () => {
     <MyBottomNavigation onChange={handleChange}/>
     <div style={styles.content}>
     {currentTab === "ОС" && <InfoOS/>}
-    {currentTab === "Процессор" && <InfoCPU/>}
+    {currentTab === "Процессор" && <CpuFrequencyChart/>}
     {currentTab === "Оперативная память" && <InfoMemory/>}
     </div>
  </div>

@@ -9,18 +9,20 @@ if (require('electron-squirrel-startup')) {
 }
 
 
-
+let mainWindow;
 
 
 const createWindow = () => {
   // Create the browser window.
-  const mainWindow = new BrowserWindow({
+  mainWindow = new BrowserWindow({
+    icon: 'images/icon.png',
+    resizable: true,
     width: 600,
-    height: 680,
-    maxWidth: 600, // Максимальная ширина окна
-    maxHeight: 680, // Максимальная высота окна
+    height: 660,
+    maxWidth: 1800, // Максимальная ширина окна
+    maxHeight: 660, // Максимальная высота окна
     minWidth: 600, // Максимальная ширина окна
-    minHeight: 680, // Максимальная высота окна
+    minHeight: 660, // Максимальная высота окна
     webPreferences: {
       preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
     },
@@ -38,6 +40,7 @@ app.whenReady().then(() => {
   Menu.setApplicationMenu(null)
   
   ipcMain.handle('info:os', async () => {
+    mainWindow.setBounds({ width: 600, height: 680 }); 
     try {
       const data = await si.osInfo();
       console.log(data);
@@ -49,6 +52,7 @@ app.whenReady().then(() => {
   });
 
   ipcMain.handle('info:cpu', async () => {
+    mainWindow.setBounds({ width: 1800, height: 680 }); 
     try {
       const data = await si.cpu(); // Получаем данные о процессоре
       console.log(data);
@@ -61,6 +65,7 @@ app.whenReady().then(() => {
   
 
   ipcMain.handle('info:memory', async () => {
+    mainWindow.setBounds({ width: 600, height: 680 }); 
     try {
       const data = await si.mem(); // Получаем данные об оперативной памяти
       const memoryInGB = {
